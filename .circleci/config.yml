@@ -7,10 +7,10 @@ executors:
  env: clairetkw/docker-node-app
  docker: # Each job requires specifying an executor
  # (either docker, macos, or machine), see
- — image: cimg/node:16.10
+  — image: cimg/node:16.10
  auth:
- username: $DOCKERHUB_USERNAME
- password: $DOCKERHUB_PASSWORD
+  username: $DOCKERHUB_USERNAME
+  password: $DOCKERHUB_PASSWORD
 
 jobs:
   build:
