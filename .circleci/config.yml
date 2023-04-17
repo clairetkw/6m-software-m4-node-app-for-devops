@@ -4,7 +4,7 @@ version: 2.1
 executors:
  docker-publisher: 
  environment:
- IMAGE_NAME: clairetkw/docker-node-app
+ env: clairetkw/docker-node-app
  docker: # Each job requires specifying an executor
  # (either docker, macos, or machine), see
  — image: circleci/node@5.0.1
@@ -42,8 +42,8 @@ jobs:
         name: Publish Docker Image to Docker Hub
         command: |
           echo “$DOCKERHUB_PASSWORD” | docker login -u “$DOCKERHUB_USERNAME” — password-stdin
-          docker build -t $IMAGE_NAME .
-          docker push $IMAGE_NAME:latest
+          docker build -t $env .
+          docker push $env:latest
  
 workflows:
   simple_workflow:
