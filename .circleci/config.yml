@@ -23,6 +23,7 @@ jobs:
           npm install
       - run:
           name: Build Docker image
+      - run: 
           command: docker build --tag "${env}" .
           
   test:
