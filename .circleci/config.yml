@@ -56,9 +56,13 @@ jobs:
    
 workflows:
   simple_workflow:
-  
+    conditional-workflow:
+      when:
+        - equal: [main, << pipeline.git.branch >>]   
     jobs:
-      - build
+      - build:
+        - requires: 
+          - conditional-workflow
       - test:
           requires:
             - build
