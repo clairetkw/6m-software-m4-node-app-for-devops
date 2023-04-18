@@ -47,6 +47,7 @@ jobs:
           image: clairetkw/m4-node-app
       - docker/push:
           image: clairetkw/m4-node-app
+      - run:
           command: |
             echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_LOGIN}" --password-stdin
             docker push "${env}"
