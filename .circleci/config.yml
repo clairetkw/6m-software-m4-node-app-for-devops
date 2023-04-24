@@ -2,7 +2,6 @@ version: 2.1
 orbs:
   node: circleci/node@5.0.1
   docker: circleci/docker@2.1.4
-#   heroku: circleci/heroku@2.0.0
   
 jobs:
   build:
@@ -40,36 +39,13 @@ jobs:
       - docker/push:
           image: clairetkw/m4-node-app
           
-#   deploy:
-#       docker:
-#           - image: cimg/node:16.10
-#       steps:
-#           - setup_remote_docker      
-#           - heroku/install
-#           - checkout
-#           - run:
-#               name: Heroku Container Push
-#               command: | 
-#                   heroku container:login
-#                   heroku container:push web -a claire-su-devops
-#                   heroku container:release web -a claire-su-devops
-   
 workflows:
   simple_workflow:
     jobs:
       - build:
-          filters:
-            branches:
-              only: main
       - test:
           requires:
             - build
-          filters:
-            branches:
-              only: main
       - build-and-push:
           requires:
             - test
-#       - deploy:
-#           requires:
-#             - build-and-push
