@@ -37,8 +37,10 @@ jobs:
       - docker/check
       - docker/build:
           image: clairetkw/m4-node-app
+          tag: <<pipeline.git.tag>>
       - docker/push:
           image: clairetkw/m4-node-app
+          tag: <<pipeline.git.tag>>
           
 #   deploy:
 #       docker:
@@ -70,6 +72,16 @@ workflows:
       - build-and-push:
           requires:
             - test
+          filters:
+            tags:
+              only: /^v.*/  
+            branches: 
+              ignore: /.*/
 #       - deploy:
 #           requires:
 #             - build-and-push
+#           filters:
+#             tags:
+#               only: /^v.*/  
+#             branches: 
+#               ignore: /.*/
